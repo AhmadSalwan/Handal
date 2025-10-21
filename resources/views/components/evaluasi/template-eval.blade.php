@@ -7,6 +7,7 @@
     <title>{{ $judul ?? 'Survei Sekolah Aman Digital' }}</title>
 </head>
 <body class="bg-gray-100 text-gray-800">
+    <x-navbar></x-navbar>
     <div class="max-w-3xl mx-auto my-10 bg-white p-8 rounded-lg shadow-md">
        <div class="border-b border-gray-200 mb-8">
     <div class="flex justify-start space-x-2 overflow-x-auto">

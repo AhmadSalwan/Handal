@@ -4,6 +4,8 @@
     deskripsi="Bagian ini mengukur kesiapan Sumber Daya Manusia sekolah Anda dalam aspek digital."
     action="{{ route('evaluasi.store') }}"
 >
+<x-navbar></x-navbar>
+
 
     @include('evaluation.layouts.radio' , [
         'pertanyaan' => 'Apakah sekolah Anda memiliki kebijakan tertulis atau lisan terkait membawa perangkat digital (seperti handphone, laptop, tablet) ke sekolah oleh siswa?',

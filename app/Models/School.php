@@ -17,7 +17,13 @@ class School extends Model
         'npsn',
         'is_verified',
         'assessment_file',
-        'assessment_original_name', 
+        'assessment_original_name',
+        'score_sdm',
+        'score_infrastruktur',
+        'score_literasi',
+        'score_keamanan',
+        'rating',
+        'kontak', 
     ];
      public function digitalActivities()
     {

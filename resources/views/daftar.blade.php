@@ -72,6 +72,17 @@
           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
           placeholder="Contoh: 40312345">
       </div>
+      <div class="mt-4">
+          <x-input-label for="kontak" value="Nomor Kontak (WhatsApp/Telp)" /> 
+          <x-text-input id="kontak" 
+                        class="block mt-1 w-full" 
+                        type="text" 
+                        name="kontak" 
+                        required 
+                        autocomplete="tel"
+                        placeholder="Contoh: 081234567890" />
+          <x-input-error :messages="$errors->get('contact_number')" class="mt-2" />
+      </div>
 
       {{-- Surat Asesmen --}}
     

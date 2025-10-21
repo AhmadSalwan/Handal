@@ -7,16 +7,11 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 text-gray-800">
+        <x-navbar></x-navbar>
 
     <div class="container mx-auto p-6">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold ">📊 Dashboard Admin - Sekolah</h1>
-            <form method="POST" action="{{ route('logout') }}" class="inline">
-            @csrf
-            <button type="submit" class="text-white bg-red-600 hover:bg-red-700 rounded px-4 py-2 transition duration-150">
-                Logout
-            </button>
-            </form>
         </div>
         {{-- Pesan sukses --}}
          @if(session('success'))

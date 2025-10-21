@@ -47,7 +47,7 @@
                 </li>
                 
                 @auth
-                  @if (Auth::user()->role==='admin' ||Auth::user()->role==='school' )
+                  @if (Auth::user()->role==='admin' ||Auth::user()->role==='user' )
                 <li>
                     <a href="{{ route('daftar') }}" 
                        class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
@@ -68,13 +68,21 @@
                 @guest  
                 <li>
                     <a href="{{ route('login') }}" 
-                       class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
-                       {{ request()->routeIs('data') ? $activeClass : $defaultClass }}">
+                    class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
+                    {{-- Periksa apakah rute saat ini adalah 'login' --}}
+                    {{ request()->routeIs('login') ? $activeClass : $defaultClass }}"> 
                         Login
                     </a>
                 </li>
                 @endguest
-
+                @auth
+               <form method="POST" action="{{ route('logout') }}" class="inline">
+                @csrf
+                    <button type="submit" class="text-red-500  hover:text-red-700 rounded  transition duration-150">
+                        Logout
+                    </button>
+                </form>
+                @endauth
             </ul>
         </div>
     </div>

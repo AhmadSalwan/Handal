@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class SchoolController extends Controller
 {
@@ -18,12 +21,15 @@ class SchoolController extends Controller
 
     public function admin_index()
     {
+       if (Gate::allows('admin-area')) {
         $schools = School::all();
         return view('admin_view', compact('schools'));
+        
+    } else {    
+        return redirect('/')->with('error', 'Akses ditolak. Anda tidak memiliki izin Admin.');
     }
-
+    }
     /**
-     * Show the form for creating a new resource.
      */
     public function create()
     {
@@ -44,26 +50,17 @@ class SchoolController extends Controller
         'npsn' => 'required|unique:schools,npsn',
         'assessment_file' => 'nullable|file|mimes:pdf|max:2048',
         'assessment_original_name' => 'nullable|string',
+        'kontak' => 'required|string|max:15'
     ]);
 
     $filename = null;
     $originalName = null;
-
-    // Simpan file kalau ada
     if ($request->hasFile('assessment_file')) {
         $file = $request->file('assessment_file');
-        //Gemini
         $path = $file->store('assessments', 'public');
         $originalName = $file->getClientOriginalName();
-         // Simpan nama file asli ke dalam variabel
-        // GPT
-        // $filename = time() . '.' . $file->getClientOriginalExtension();
-        // // simpan ke folder public/assessments
-        // $file->move(public_path('assessments'), $filename);
-        
     }
 
-    // Simpan data sekolah ke database
     $school = School::create([
         'nama'            => $request->nama,
         'jenjang'         => $request->jenjang,
@@ -72,19 +69,21 @@ class SchoolController extends Controller
         'npsn'            => $request->npsn,
         'assessment_file' => $path ?? null,
         'assessment_original_name' => $originalName ?? null,
+        'kontak'          => $request->kontak,
     ]);
-
-    // dd($filename);
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->role !== 'admin') {
+            $user->role = 'school';
+            $user->save();
+        }
+    }
 
     return redirect()->route('daftar')
         ->with('success', 'Data Disimpan. Silahkan menunggu verifikasi admin!');
 }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+public function show(string $id)
     {
         return view('schools.show', compact('school'));
     }
