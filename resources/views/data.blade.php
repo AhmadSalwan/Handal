@@ -22,7 +22,7 @@
       </div>
       <div class="bg-white shadow-md rounded-lg p-6">
         <p class="text-4xl font-bold text-green-600">95</p>
-        <p class="text-gray-600 mt-2">Kuisioner Selesai</p>
+        <p class="text-gray-600 mt-2">Evaluasi Selesai</p>
       </div>
       <div class="bg-white shadow-md rounded-lg p-6">
         <p class="text-4xl font-bold text-yellow-600">50</p>

@@ -98,11 +98,21 @@
     <form action="{{ $action }}" method="POST" class="space-y-8">
         @csrf
         {{ $slot }}
-        <div class="text-center">
-            <button type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
-            Kirim Evaluasi
-        </button>      
+
+        <div class="flex justify-center space-x-3">
+            <button type="submit" name="redirect_action" value="stay"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                Kirim Evaluasi
+            </button>
+
+            {{-- Optional next button (only appears if the view defines $nextRoute) --}}
+            @isset($nextRoute)
+            <button type="submit" name="redirect_action" value="next"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
+                Lanjut &raquo;
+            </button>
+            @endisset
+        </div>
     </form>
 </div>
 </body>

@@ -63,4 +63,11 @@ action="{{ route('evaluasi.store') }}">
         ]   
     ])
 
-</x-evaluasi.template-eval>
+    <div class="text-end mt-4">
+        <button type="submit" name="next" value="literasi"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow-md transition">
+            Next &raquo;
+        </button>
+    </div>
+
+<!-- </x-evaluasi.template-eval> -->

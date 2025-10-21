@@ -99,7 +99,7 @@
         </p>
       </div>
       <div class="px-3 py-3.5 flex justify-center">
-        <a href="/ranking" 
+        <a href="/rangking" 
            class="bg-gray-500 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg transition">
           Lihat Ranking Sekolah &raquo;
         </a>
@@ -121,7 +121,7 @@
       </div>
       <div class="bg-white shadow-md rounded-lg p-6">
         <p class="text-4xl font-bold text-green-600">95</p>
-        <p class="text-gray-600 mt-2">Kuisioner Selesai</p>
+        <p class="text-gray-600 mt-2">Evaluasi Selesai</p>
       </div>
       <div class="bg-white shadow-md rounded-lg p-6">
         <p class="text-4xl font-bold text-yellow-600">50</p>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -37,9 +36,16 @@ class SchoolController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function rangking()
+    {
+        // Ambil 3 sekolah dengan skor tertinggi
+        $schools = \App\Models\School::orderByDesc('skor')
+                    ->take(3)
+                    ->get();
+
+        return view('rangking', compact('schools'));
+    }
+
    public function store(Request $request)
 {
     $request->validate([
@@ -83,7 +89,11 @@ class SchoolController extends Controller
         ->with('success', 'Data Disimpan. Silahkan menunggu verifikasi admin!');
 }
 
-public function show(string $id)
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
         return view('schools.show', compact('school'));
     }

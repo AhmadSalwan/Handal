@@ -16,6 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('landingcontent.edit')" :active="request()->routeIs('landingcontent.edit')">
+                        {{ __('Landing Page') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -72,6 +78,15 @@
             </x-responsive-nav-link>
         </div>
 
+<<<<<<< HEAD
+=======
+        <!-- <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Landing') }}
+            </x-responsive-nav-link>
+        </div> -->
+
+>>>>>>> Andar/Andar
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">

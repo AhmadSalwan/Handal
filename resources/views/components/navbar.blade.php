@@ -7,7 +7,7 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">HANDAL</span>
         </span>
 
-        {{-- Tombol Toggle Menu (Menggunakan Alpine.js untuk mobile, jika tersedia) --}}
+        {{-- Tombol Toggle Menu (Mobile) --}}
         <button data-collapse-toggle="navbar-default" type="button" 
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" 
                 aria-controls="navbar-default" aria-expanded="false">
@@ -17,19 +17,18 @@
             </svg>
         </button>
 
-        {{-- Konten Menu (Navbar) --}}
+        {{-- Menu Navbar --}}
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             
             @php
-                // Definisikan kelas aktif dan non-aktif untuk membersihkan kode
                 $activeClass = 'text-blue-700 font-bold';
                 $defaultClass = 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700';
             @endphp
 
-            {{-- STRUKTUR UL YANG SUDAH DIBERSIHKAN --}}
             <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 
                        md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
 
+                {{-- Home --}}
                 <li>
                     <a href="{{ route('home') }}" 
                        class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
@@ -38,6 +37,7 @@
                     </a>
                 </li>
 
+                {{-- About --}}
                 <li>
                     <a href="{{ route('about') }}" 
                        class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
@@ -45,19 +45,21 @@
                         About
                     </a>
                 </li>
-                
+
+                {{-- Daftar (Only Admin/School) --}}
                 @auth
-                  @if (Auth::user()->role==='admin' ||Auth::user()->role==='user' )
-                <li>
-                    <a href="{{ route('daftar') }}" 
-                       class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
-                       {{ request()->routeIs('daftar') ? $activeClass : $defaultClass }}">
-                        Daftar
-                    </a>
-                </li>
-                  @endif
+                    @if (Auth::user()->role === 'admin' || Auth::user()->role === 'school')
+                        <li>
+                            <a href="{{ route('daftar') }}" 
+                               class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
+                               {{ request()->routeIs('daftar') ? $activeClass : $defaultClass }}">
+                                Daftar
+                            </a>
+                        </li>
+                    @endif
                 @endauth
 
+                {{-- Informasi Publik --}}
                 <li>
                     <a href="{{ route('data') }}" 
                        class="block py-2 px-3 rounded-sm md:border-0 md:p-0 

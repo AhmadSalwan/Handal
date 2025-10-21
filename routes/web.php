@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CMS\LandingContentController;
+use App\Http\Controllers\CMS\LandingTestimonyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +22,16 @@ Route::get('/data',[App\Http\Controllers\SchoolController::class, 'index'])->nam
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    // Single-row edit/update
+    Route::get('landingcontent/edit', [LandingContentController::class, 'edit'])->name('landingcontent.edit');
+    Route::put('landingcontent/update', [LandingContentController::class, 'update'])->name('landingcontent.update');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('landingtestimony', LandingTestimonyController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
