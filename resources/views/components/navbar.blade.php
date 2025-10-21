@@ -85,6 +85,17 @@
                     </button>
                 </form>
                 @endauth
+                  @auth
+                    @if (Auth::user()->role === 'admin')
+                        <li>
+                            <a href="{{ route('dashboard') }}" 
+                               class="block py-2 px-3 rounded-sm md:border-0 md:p-0 
+                               {{ request()->routeIs('dashboard') ? $activeClass : $defaultClass }}">
+                                Dashboard Admin
+                            </a>
+                        </li>
+                    @endif
+                @endauth
             </ul>
         </div>
     </div>

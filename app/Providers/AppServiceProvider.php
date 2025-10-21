@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Gate;
-=======
->>>>>>> Andar/Andar
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,12 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-<<<<<<< HEAD
         Gate::define('admin-area', function ($user) {
             return $user->role === 'admin';
         });
-=======
-        //
->>>>>>> Andar/Andar
     }
 }

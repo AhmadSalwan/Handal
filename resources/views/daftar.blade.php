@@ -49,13 +49,6 @@
         </select>
       </div>
 
-      <!-- Kabupaten/Kota -->
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2">Kabupaten/Kota</label>
-        <input type="text" name="kabupaten" required
-          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          placeholder="Contoh: Makassar">
-      </div>
 
       <!-- Email Resmi -->
       <div>
@@ -83,6 +76,35 @@
                         placeholder="Contoh: 081234567890" />
           <x-input-error :messages="$errors->get('contact_number')" class="mt-2" />
       </div>
+      <div>
+        <x-input-label for="provinsi" value="Provinsi" />
+        <x-text-input id="provinsi" class="block mt-1 w-full" type="text" name="provinsi" :value="old('provinsi')" required />
+        <x-input-error :messages="$errors->get('provinsi')" class="mt-2" />
+    </div>
+
+    <div>
+        <x-input-label for="kabupaten" value="Kabupaten/Kota" />
+        <x-text-input id="kabupaten" class="block mt-1 w-full" type="text" name="kabupaten" :value="old('kabupaten')" required />
+        <x-input-error :messages="$errors->get('kabupaten')" class="mt-2" />
+    </div>
+
+    <div>
+        <x-input-label for="kecamatan" value="Kecamatan" />
+        <x-text-input id="kecamatan" class="block mt-1 w-full" type="text" name="kecamatan" :value="old('kecamatan')" required />
+        <x-input-error :messages="$errors->get('kecamatan')" class="mt-2" />
+    </div>
+
+    <div>
+        <x-input-label for="kelurahan" value="Kelurahan/Desa" />
+        <x-text-input id="kelurahan" class="block mt-1 w-full" type="text" name="kelurahan" :value="old('kelurahan')" required />
+        <x-input-error :messages="$errors->get('kelurahan')" class="mt-2" />
+    </div>
+    
+    <div>
+        <x-input-label for="nama_jalan" value="Nama Jalan" />
+        <x-text-input id="nama_jalan" class="block mt-1 w-full" type="text" name="nama_jalan" :value="old('nama_jalan')" required />
+        <x-input-error :messages="$errors->get('nama_jalan')" class="mt-2" />
+    </div>
 
       {{-- Surat Asesmen --}}
     

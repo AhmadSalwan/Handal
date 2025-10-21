@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CMS\LandingContentController;
 use App\Http\Controllers\CMS\LandingTestimonyController;
@@ -17,11 +18,12 @@ Route::get('/home', function () {
 Route::get('/about', function () {
     return view('about');
 })->name('about');
-Route::get('/data',[App\Http\Controllers\SchoolController::class, 'index'])->name('data');
+Route::get('/data',[SchoolController::class, 'index'])->name('data');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/admin_view', [SchoolController::class, 'admin_index'])->name('schools.index');
+
+Route::get('/dashboard', [SchoolController::class, 'admin_index'])->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     // Single-row edit/update
@@ -40,20 +42,12 @@ Route::middleware('auth')->group(function () {
       Route::get('/download/{id}', function ($id) {
     $school = App\Models\School::findOrFail($id);
      $filePath = $school->assessment_file; 
-    
-    // Opsional: Cek apakah file ada sebelum mencoba download
+
     if (!Storage::exists($filePath)) {
         abort(404, 'File tidak ditemukan.');
     }
-    
-    // Ambil nama file asli (atau yang ingin Anda gunakan untuk download)
-    $fileName = basename($filePath); 
-    
-    // Gunakan download()
+        $fileName = basename($filePath); 
     return Storage::download($filePath, $fileName); 
-    
     })->name('file.download');
 });
-
-
 require __DIR__.'/auth.php';

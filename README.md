@@ -14,6 +14,10 @@ handaltest
 -update schools db scores for next button to work (via migration)
 -CMS for landing page content (Tentang, Visi, Misi and Testimoni)
 
+*21/10/2025
+-Added Regist form for login 
+-Added minor role based view
+
 ***Fix plan:
 *19/10/2025
 -add role based view/feature

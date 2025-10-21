@@ -24,6 +24,9 @@ class School extends Model
         'score_keamanan',
         'rating',
         'kontak', 
+        'kecamatan',
+        'kelurahan',
+        'nama_jalan',
     ];
      public function digitalActivities()
     {

@@ -22,7 +22,7 @@ class SchoolController extends Controller
     {
        if (Gate::allows('admin-area')) {
         $schools = School::all();
-        return view('admin_view', compact('schools'));
+        return view('dashboard', compact('schools'));
         
     } else {    
         return redirect('/')->with('error', 'Akses ditolak. Anda tidak memiliki izin Admin.');
@@ -56,7 +56,10 @@ class SchoolController extends Controller
         'npsn' => 'required|unique:schools,npsn',
         'assessment_file' => 'nullable|file|mimes:pdf|max:2048',
         'assessment_original_name' => 'nullable|string',
-        'kontak' => 'required|string|max:15'
+        'kontak' => 'required|string|max:15',
+        'kecamatan' => 'required', 
+        'kelurahan' => 'required',   
+        'nama_jalan' => 'required',
     ]);
 
     $filename = null;
@@ -76,6 +79,9 @@ class SchoolController extends Controller
         'assessment_file' => $path ?? null,
         'assessment_original_name' => $originalName ?? null,
         'kontak'          => $request->kontak,
+        'kecamatan' => $request->kecamatan, 
+        'kelurahan' => $request->kelurahan, 
+        'nama_jalan' => $request->nama_jalan, 
     ]);
     if (Auth::check()) {
         $user = Auth::user();
